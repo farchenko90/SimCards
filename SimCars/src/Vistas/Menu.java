@@ -16,7 +16,6 @@ import java.awt.event.KeyListener;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import javax.swing.table.DefaultTableModel;
@@ -77,7 +76,7 @@ public final class Menu extends javax.swing.JFrame implements KeyListener{
         sombra_total_panel(jPanel8);
         sombra_total_panel(jPanel9);
         sombra_total_panel(jPanel11);
-        sombra_total_panel(jPanel13);
+        sombra_total_panel2(jPanel13);
         
     }
     
@@ -224,6 +223,18 @@ public final class Menu extends javax.swing.JFrame implements KeyListener{
         ccom.show();
         
     }
+    
+    private void sombra_total_panel2(JPanel jp){
+        DropShadowBorder shadow = new DropShadowBorder();
+        shadow.setShadowColor(Color.BLACK);
+        shadow.setShowLeftShadow(false);
+        shadow.setShowRightShadow(false);
+        shadow.setShowBottomShadow(true);
+        shadow.setShowTopShadow(false);
+        shadow.setShadowSize(7);
+        shadow.setShadowOpacity(0.3f);
+        jp.setBorder(shadow);
+    } 
     
     private void sombra_total_panel(JPanel jp){
         DropShadowBorder shadow = new DropShadowBorder();
