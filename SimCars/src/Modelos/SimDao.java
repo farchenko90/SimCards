@@ -30,7 +30,7 @@ public class SimDao {
         }
     }
     
-    public int id_sim(String id){
+    public int id_sim(String id) throws SQLException{
         try {
             con = new Conexion();
             con.Conectar();
@@ -46,7 +46,7 @@ public class SimDao {
         } catch (SQLException | ClassNotFoundException e) {
            
         }
-        
+        con.Desconectar();
         
         return -1;
     }
@@ -84,7 +84,7 @@ public class SimDao {
         return false;
     }
     
-    public ArrayList<Sim> consulta(Sim s,String x){
+    public ArrayList<Sim> consulta(Sim s,String x) throws SQLException{
         try {
             con = new Conexion();
             con.Conectar();
@@ -103,10 +103,12 @@ public class SimDao {
                     dat.add(s);
                 }
                 return dat;
+                
             }
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e);
         }
+        con.Desconectar();
         return null;
     }
     

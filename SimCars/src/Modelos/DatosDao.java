@@ -28,12 +28,14 @@ public class DatosDao {
             prepare = con.getConexion().prepareStatement(sql);
             
             return prepare.executeUpdate()>0;
+            
         } catch (ClassNotFoundException | SQLException e) {
             return false;
         }
+        
     }
     
-    public boolean eliminarSim(String cod){
+    public boolean eliminarSim(String cod) throws SQLException{
         try {
             con = new Conexion();
             con.Conectar();
@@ -41,9 +43,11 @@ public class DatosDao {
             System.out.println(sql);
             prepare = con.getConexion().prepareStatement(sql);
             return prepare.executeUpdate()>0;
+            
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e);
         }
+        con.Desconectar();
         return false;
     }
     
@@ -94,6 +98,7 @@ public class DatosDao {
                     cont++;
                     }
                 }
+                con.Desconectar();
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e);
         }
@@ -134,7 +139,7 @@ public class DatosDao {
                     cont++;
                 }
             }
-            
+            con.Desconectar();
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e);
         }
@@ -160,6 +165,7 @@ public class DatosDao {
                 }
                 return dat;
             }
+            con.Desconectar();
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e);
         }
@@ -186,6 +192,7 @@ public class DatosDao {
                 }
                 return dat;
             }
+            con.Desconectar();
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e);
         }

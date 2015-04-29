@@ -16,7 +16,7 @@ public class UsuarioDao {
     public ResultSet res;
     
     
-    public String inicioSesion(Usuario u){
+    public String inicioSesion(Usuario u) throws SQLException{
         try {
             String cli = null;
             con = new Conexion();
@@ -37,6 +37,7 @@ public class UsuarioDao {
             System.out.println(e);
             
         }
+        con.Desconectar();
         return null;
         
     }

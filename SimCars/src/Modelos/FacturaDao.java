@@ -16,7 +16,7 @@ public class FacturaDao {
     public ResultSet res;
     Factura fac;
     
-    public double sumatotal(String finicial,String ffinal){
+    public double sumatotal(String finicial,String ffinal) throws SQLException{
         try {
             con = new Conexion();
             con.Conectar();
@@ -28,11 +28,13 @@ public class FacturaDao {
                 fac.total = sentencia.getDouble("total");
             }
             return fac.total;
+            
         } catch (SQLException e) {
             JOptionPane.showMessageDialog(null, "" + e.getMessage());
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(FacturaDao.class.getName()).log(Level.SEVERE, null, ex);
         }
+        con.Desconectar();
         return -1;
     }
     
@@ -56,7 +58,7 @@ public class FacturaDao {
     
     
     
-    public int maxId(){
+    public int maxId() throws SQLException{
         try {
             con = new Conexion();
             con.Conectar();
@@ -73,6 +75,7 @@ public class FacturaDao {
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(FacturaDao.class.getName()).log(Level.SEVERE, null, ex);
         }
+        con.Desconectar();
         return -1;
     }
     

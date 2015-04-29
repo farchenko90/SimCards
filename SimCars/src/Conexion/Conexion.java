@@ -2,7 +2,7 @@
 package Conexion;
 
 //Importo las librerias
-import java.sql.Connection;
+import com.mysql.jdbc.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -33,7 +33,7 @@ public class Conexion {
     public Connection Conectar() throws ClassNotFoundException, SQLException
     {
         Class.forName("org.gjt.mm.mysql.Driver");
-        con = DriverManager.getConnection(servidor,usuario,password);
+        con = (Connection) DriverManager.getConnection(servidor,usuario,password);
         return con;
     }
     

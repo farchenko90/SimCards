@@ -30,7 +30,7 @@ public class PrepagoDao {
         }
     }
     
-    public boolean eliminarSim(String cod){
+    public boolean eliminarSim(String cod) throws SQLException{
         try {
             con = new Conexion();
             con.Conectar();
@@ -38,9 +38,11 @@ public class PrepagoDao {
             prepare = con.getConexion().prepareStatement(sql);
             System.out.println(sql);
             return prepare.executeUpdate()>0;
+            
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e);
         }
+        con.Desconectar();
         return false;
     }
     
@@ -63,7 +65,7 @@ public class PrepagoDao {
         }
     }
     
-    public ArrayList<Prepago> busquedaDatos(Prepago x,String cc){
+    public ArrayList<Prepago> busquedaDatos(Prepago x,String cc) throws SQLException{
         try {
             con = new Conexion();
             con.Conectar();
@@ -82,10 +84,12 @@ public class PrepagoDao {
                     dat.add(x);
                 }
                 return dat;
+                
             }
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e);
         }
+        con.Desconectar();
         return null;
     }
     

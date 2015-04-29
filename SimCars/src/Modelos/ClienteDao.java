@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,7 +18,7 @@ public class ClienteDao {
     public PreparedStatement prepare;
     public ResultSet res;
     
-    public boolean eliminarCliente(String cc){
+    public boolean eliminarCliente(String cc) throws SQLException{
         try {
             String cod = String.valueOf(cc);
             con = new Conexion();
@@ -24,10 +26,13 @@ public class ClienteDao {
             sql = "Delete from cliente where cedula ="+cod;
             prepare = con.getConexion().prepareStatement(sql);
             return prepare.executeUpdate()>0;
+            
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e);
         }
+        con.Desconectar();
         return false;
+        
     }
     
     public ArrayList<Cliente> busquedaCliente(Cliente x,String cc){
@@ -52,13 +57,14 @@ public class ClienteDao {
                 }
                 return cli;
             }
+            con.Desconectar();
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e);
         }
         return null;
     }
     
-    public boolean registrarCliente(Cliente cl){
+    public boolean registrarCliente(Cliente cl) {
         try {
             con = new Conexion();
             con.Conectar();
@@ -74,10 +80,12 @@ public class ClienteDao {
             //System.out.println(sql);
             prepare = con.getConexion().prepareStatement(sql);
             return prepare.executeUpdate()>0;
+            
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e);
             return false;
         }
+        
     }
     
     public boolean modificarCliente(String cc,Cliente c){
@@ -89,9 +97,11 @@ public class ClienteDao {
                     + "barrio='"+c.Barrio+"' where cedula = '"+cc+"';";
             prepare = con.getConexion().prepareStatement(sql);
             return prepare.executeUpdate()>0;
+            
         } catch (ClassNotFoundException | SQLException e) {
             return false;
         }
+        
     }
     
     
@@ -124,6 +134,7 @@ public class ClienteDao {
                     cont++;
                 }
             }
+            con.Desconectar();
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e);
         }
@@ -156,6 +167,7 @@ public class ClienteDao {
                     cont++;
                 }
             }
+            con.Desconectar();
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e);
         }
